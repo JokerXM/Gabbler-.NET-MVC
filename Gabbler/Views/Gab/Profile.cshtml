@@ -1,0 +1,210 @@
+﻿@model IEnumerable<Gabbler.Models.Gab>
+
+@{
+
+    ViewBag.Title = "Profile";
+    var path = Session["Background"];
+    var hehe = Session["avatar"];
+}
+
+<body style="background-image:url('@path')" id="totop">
+
+
+    <div id="container">
+        <!-- topDIV 开始 -->
+        <div id="top">
+            <!-- top部分的LogoDIV -->
+            <div id="topLogo">
+                <!-- topLogo部分的icoDIV -->
+                <div id="topLogoIco">
+                    <a href="CustomerIndex.html"><img src="/image/logo.png" width="72" height="72" alt="" /></a>
+                </div>
+                <!-- topLogo部分的icoDIV结束 -->
+                <!-- topLogo部分的wordDIV -->
+                <div id="topLogoWord">
+                    <a href="CustomerIndex.html"><img src="/image/company.png" width="128" height="60" alt="" /></a>
+                </div>
+                <!-- topLogo部分的wordDIV -->
+            </div>
+            <!-- top部分的LogoDIV结束 -->
+            <!-- top部分的文字导航 -->
+
+            <h1>MainPage</h1>
+
+            <div id="topWordMenu">
+                <ul>
+
+                    @Html.ActionLink("Change avatar", "Chooseavater", "Account") |
+                    @Html.ActionLink("Change background", "Choosestyle", "Account") |
+                    @Html.ActionLink("Change information", "Edit", "Account", new { id = Session["ID"] }, new { target = "_blank" })
+
+
+                    
+
+                </ul>
+            </div>
+
+        </div>
+        <!-- topDIv 结束-->
+        <!-- 内容总容器 mainDIV 开 始-->
+        <div id="main">
+            <!-- 左侧mainBannerDIV 开始 -->
+            <div id="mainBanner">
+                <!-- mainBannerTop DIV 开始 -->
+                <div id="mainBannerTop">
+                    <!--id=mainBannerTopIssue 发布框-->
+                    <div id="mainBannerTopIssue">
+                        <!--id=mainBannerTopIssuePoint 提示-->
+                        <div id="mainBannerTopIssuePoint">
+                            What you want to say now ~
+                        </div>
+                        @using (Html.BeginForm("Create", "Gab", FormMethod.Post))
+                        {
+                            <div id="mainBannerTopIssueForm">
+
+
+                                <div id="mainBannerTopIssueSure">
+                                    <div id="mainBannerTopIssueSure2">
+
+
+                                        <div>
+                                            <div id="mainBannerTopIssueFrame">
+                                                @Html.TextArea("content", new { @class = "Size", @id = "textfield2", @style = "overflow:hidden;border:1px #0CF solid;", @rows = "4" })
+                                                <input type="submit" value="Post" id="button1" style="background-color:#3295E6; border:none" />
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+
+                <div id="mainBannerContent">
+
+
+
+
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="stateShow">
+                            <div class="stateShowWord">
+                                <table width="450" border="0" cellpadding="0" cellspacing="0" class="stateTable">
+                                    <tr>
+                                        <td width="70" align="center" valign="top"><img src="@Href(@Model.First().User.Avatar.APath)" alt="" width="48" height="48" /> @item.User.Username</td>
+                                        <td width="380"> @item.content</td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="stateShowtime"> @item.Date </div>
+                            <div class="stateOp">
+                                like:@item.likenumber
+                                @Html.ActionLink("Delete it", "Delete", new { id = item.G_ID})
+                            </div>
+
+                            <div class="huifu"></div>
+                        </div>
+                    }
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <div id="mainRight">
+            <table width="200" border="0" cellpadding="0" cellspacing="0" bgcolor="#E9F4FA">
+                <tr>
+                    <td bgcolor="#E9F4FA">
+                        <!-- 右侧mainRightPostionFirstLine DIV 开始 -->
+                        <div id="mainRightPostionFirstLine">
+                            <!-- 右侧mainRightPostionFirstLineIcon DIV 开始 -->
+                            <div style="height:58px;">
+                                <div id="mainRightPostionFirstLineIcon">
+                                    <img src=@hehe width="48" height="48" align="absmiddle" title="" border="0" />
+                                </div>
+                                <!-- 右侧mainRightPostionFirstLineIcon DIV 结束 -->
+                                <!-- 右侧mainRightPostionFirstLineWord1 DIV 开始 -->
+                                <div id="mainRightPostionFirstLineWord1">
+                                    <br />
+                                    &nbsp;<font color="#005DC3">@Session["UserName"]</font><br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>
+                            </div>
+                            <!-- 右侧mainRightPostionFirstLineWord1 DIV 结束 -->
+                            <!-- 右侧mainRightPostionFirstLineWord2 DIV 开始 -->
+                            <div id="mainRightPostionFirstLineWord2">
+                                <ul>
+                                    <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    @Html.ActionLink("Profile", "Profile", new { id = Session["ID"] }, new { @class = "a1 style2" })&nbsp;&nbsp;
+                                    @Html.ActionLink("Friend", "Index", "Follow", new { id = Session["ID"] }, new { @class = "a1 style2" })
+
+                                </ul>
+                            </div>
+                            <!-- 右侧mainRightPostionFirstLineWord2 DIV 结束 -->
+                        </div>
+                        <!-- 右侧mainRightPostionFirstLine DIV 结束 -->
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#E9F4FA">
+                        <!-- 右侧mainRightPostionSecondLine DIV 开始 -->
+                        <div id="mainRightPostionSecondLine">
+                            <!-- 右侧mainRightPositionSecondLineContent DIV 开始 -->
+                            <div id="mainRightPositionSecondLineContent">
+                                <a href="#" class="a1"><font style="font-size:16px;font-weight:700; color:#000;">Features</font></a><br />
+                                <hr color="#79BDD1" zize="2" style="" />
+
+                                @Html.ActionLink("myprofile", "Profile", new { id = Session["ID"] }, new { @class = "style3 a1" })
+                                <hr class="h1">
+                                @Html.ActionLink("Followmanagement", "Index", "Follow", new { id = Session["ID"] }, new { @class = "style3 a1" })
+                                <hr class="h1">
+                                @Html.ActionLink("Change information", "Edit", "Account", new { id = Session["ID"] }, new { @class = "style3 a1" })
+                                <hr class="h1">
+           
+                                @Html.ActionLink("Mainpage", "MainPage", "Account", new { target = "_blank" })
+                                <hr class="h1">
+                                @Html.ActionLink("Logout", "Logout", "Account")
+                            </div>
+                            <!-- 右侧mainRightPositionSecondLineContent DIV 开始 -->
+                        </div>
+                        <!-- 右侧mainRightPostionSecondLine DIV 结束 -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <!-- 右侧mainRightPostionFourthLine DIV 开始 -->
+                        <div id="mainRightPostionFouthLine">
+                            <!-- 右侧mainRightPositionThirdLineContent DIV 结束 -->
+                            <div id="mainRightPositionFourthLineContent">
+
+
+                                <font class="style4">About us</font>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                Made by Beauty And Beast
+                                Tel:18222331922
+
+
+                            </div>
+                            <!-- 右侧mainRightPositionThirdLineContent DIV 结束 -->
+                        </div>
+                        <!-- 右侧mainRightPostionFoutrhLine DIV 结束 -->
+                    </td>
+                </tr>
+        </div>
+    </div>
+
+
+</body>
+
+

@@ -1,0 +1,90 @@
+﻿@model Gabbler.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+    
+}
+
+<body style="background-image:url('@Model.Background.BPath'）">
+   
+    <h2 style="margin-left :500px">Change your information</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>User</legend>
+            <div class="image"><img src="~/Content/Image/user.jpg" style="width:300px;height:300px;float:right" /> </div>
+            @Html.HiddenFor(model => model.U_ID)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Username)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Username)
+                @Html.ValidationMessageFor(model => model.Username)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Password)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Age)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Age)
+                @Html.ValidationMessageFor(model => model.Age)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Sex)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Sex)
+                @Html.ValidationMessageFor(model => model.Sex)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Email)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AvatarID, "Avatar")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("AvatarID", String.Empty)
+                @Html.ValidationMessageFor(model => model.AvatarID)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BackgroundID, "Background")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("BackgroundID", String.Empty)
+                @Html.ValidationMessageFor(model => model.BackgroundID)
+            </div>
+
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+
+    <div style="margin-left:200px">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

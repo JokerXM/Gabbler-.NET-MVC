@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Gabbler.Models.User>
+
+@{
+    ViewBag.Title = "Result";
+    var path = Session["Background"];
+}
+
+<body style="background-image:url('@path')">
+    <h2>Result</h2>
+
+    <table>
+        <tr>
+            <th> avater</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img class="choose"src="@Href(@item.Avatar.APath)" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sex)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+
+                <td>
+                    @if (int.Parse(Session["exist"].ToString()) == 1)
+                    {
+                        <p>Followed person</p>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Follow", "CreateF", new { ufollow = item.U_ID })
+                    }
+
+                    @Html.ActionLink("Look Profile", "SeeProfile", "Gab", new { id = item.U_ID }, new { target = "_blank" })
+
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    @Html.ActionLink("Back to MainPage", "MainPage", "Gab")
+</body>

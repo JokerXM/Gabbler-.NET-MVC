@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Gabbler.Models.Background>
+
+@{
+    ViewBag.Title = "Choosestyle";
+    var path = Session["Background"];
+}
+
+<body style="background-image:url('@path')">
+    <center>
+        <h2>Choosestyle</h2>
+
+ 
+        <table style="margin-top:20px">
+            @foreach (var item in Model)
+            {
+                if(item.BPath!=path)
+                { 
+                    <tr>
+                        <td>
+                            <img class="choose" src="@Href(@item.BPath)" />
+                        </td>
+                        <td>
+                            @Html.ActionLink("Apply it", "BApply", new { id = item.ID })
+
+                        </td>
+                    </tr>
+               }
+            }
+
+        </table>
+    </center>
+</body>

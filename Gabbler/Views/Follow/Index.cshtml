@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Gabbler.Models.Follow>
+
+@{
+    ViewBag.Title = "Index";
+    var path = Session["Background"];
+}
+
+<body style="background-image:url('@path')">
+
+    <h1 style="margin-left:500px">Follow Management</h1>
+
+    @using (Html.BeginForm("Result", "Follow", FormMethod.Post))
+    {
+        <fieldset>
+            <legend>Search the people you want to follow</legend>
+            <div class="image"><img src="~/Content/Image/search.jpg" style="width:100px;height:100px;float:right" /> </div>
+            <div class="editor-label">
+                Usrname：
+            </div>
+            <div class="editor-field">
+                Name:@Html.TextBox("FollowName")<br />
+
+            </div>
+
+
+            <p>
+                <input type="submit" value="Search" />
+
+            </p>
+        </fieldset>
+    }
+    <table style="margin-top:20px;margin-left :200px">
+        <tr>
+            <th>
+                YourName
+            </th>
+            <th>
+                FollowName
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UFollow.Username)
+                </td>
+                <td>
+                    @Html.ActionLink("UnFollow", "Delete", new { id = item.F_ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>

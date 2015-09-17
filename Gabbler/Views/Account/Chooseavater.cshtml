@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Gabbler.Models.Avatar>
+
+@{
+    ViewBag.Title = "Chooseavater";
+    var path = Session["Background"];
+}
+
+<body style="background-image:url('@path')">
+    
+    <div class="avatararea">
+        
+            @foreach (var item in Model)
+            {
+                <div class="avatar">
+                        
+                                <img class="choose" src="@Href(@item.APath)" />
+                                @Html.ActionLink("Apply it", "AApply", new { id = item.ID })
+                            
+                </div>
+            }
+
+        
+        </div>
+    
+</body>

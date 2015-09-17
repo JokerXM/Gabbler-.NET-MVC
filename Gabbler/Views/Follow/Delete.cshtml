@@ -1,0 +1,32 @@
+﻿@model Gabbler.Models.Follow
+
+@{
+    ViewBag.Title = "Delete";
+    var path = Session["Background"];
+}
+
+<body style="background-image:url('@path')">
+
+    <h2 style="margin-left :200px">Are you sure you want to unfollow this person?</h2>
+    <fieldset style="padding-top:10px">
+        <legend>Follow</legend>
+        <div class="image"><img src="~/Content/Image/delete1.jpg" style="width:150px;height:150px;float:right" /> </div>
+        <strong>
+            <div class="display-label">
+                FollowName
+            </div>
+        </strong>
+
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UFollow.Username)
+        </div>
+    </fieldset>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <p style="margin-left:200px">
+            <input type="submit" value="Delete" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+</body>

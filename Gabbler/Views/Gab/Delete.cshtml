@@ -1,0 +1,58 @@
+﻿@model Gabbler.Models.Gab
+
+@{
+    ViewBag.Title = "Delete";
+    var path = Session["Background"];
+}
+
+<body style="background-image:url('@path')">
+    <h3 style="margin-left :500px">Are you sure you want to delete this?</h3>
+    <fieldset>
+        <legend> Your Gab</legend>
+        <div class="image"><img src="~/Content/Image/delete.jpg" style="width:400px;height:250px;float:right" /> </div>
+        <h3>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.UserID):
+            </div>
+        </h3>
+
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UserID)
+        </div>
+        <h3>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Date):
+            </div>
+        </h3>
+
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Date)
+        </div>
+        <h3>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.content):
+            </div>
+        </h3>
+
+        <div class="display-field">
+            @Html.DisplayFor(model => model.content)
+        </div>
+        <h3>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.likenumber):
+            </div>
+        </h3>
+
+        <div class="display-field">
+            @Html.DisplayFor(model => model.likenumber)
+        </div>
+    </fieldset>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <p style="margin-left:200px">
+            <input type="submit" value="Delete" /> |
+            @Html.ActionLink("Back to MainPage", "MainPage", "Gab")
+        </p>
+    }
+</body>

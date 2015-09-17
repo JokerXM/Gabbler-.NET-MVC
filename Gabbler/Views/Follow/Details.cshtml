@@ -1,0 +1,30 @@
+﻿@model Gabbler.Models.Follow
+
+@{
+    ViewBag.Title = "Details";
+}
+<body style="background-image:url('@Model.User.Background.BPath')">
+    <h2>Details</h2>
+
+    <fieldset>
+        <legend>Follow</legend>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.UserID)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UserID)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.UFollowID)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UFollowID)
+        </div>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.F_ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>

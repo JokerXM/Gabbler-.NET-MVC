@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Gabbler";
+}
+<body style="background: url(/image/login-page-bg.jpg) top center no-repeat #c4c4c4; ">
+    <div id="loginpage">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @id = "login-form" }))
+        {
+
+
+
+            <fieldset>
+                <legend>Log in</legend>
+
+
+                <label for="login">Username:</label>
+                <input type="text" name="username" id="login" value="username here">
+                <div class="clear"></div>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" value="password here">
+                <div class="clear"></div>
+
+                <br />
+                <div class="clear">
+                    <button type="submit" class="login-button" style="margin: -20px 0 0 287px;" class="button" name="commit" value="Log in">Login</button>
+                    @Html.ActionLink("register ", "Create", "Account")
+                </div>
+
+
+
+
+            </fieldset>
+        }
+    </div>
+</body>
+
+
